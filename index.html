@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Potta+One&family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="prism.css">
+    <script src="prism.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>ReactJS CheatSheet</title>
+</head>
+
+<body>
+    <nav>
+        <span class="logo"><img src="/Assets/copy.png" alt=""></span>
+        <div class="content center">
+            The React Cheatsheet for 2022!
+        </div>
+    </nav>
+    
+    <div class="container">
+        <ol>
+            <li><b>Functional Component</b>
+                <pre class="language-jsx"><code>import React from 'react';
+
+export default function UserProfile() {
+  return (
+      &lt;div className="UserProfile"&gt;
+        &lt;div&gt;Hello&lt;/div&gt;  
+        &lt;div&gt;World&lt;/div&gt;
+      &lt;/div&gt;
+  );
+}</code></pre>
+            </li>
+
+
+            <li><b>Embed an internal component</b>
+                <pre class="language-jsx"><code>import React from 'react';
+import UserAvatar from "./UserAvatar";
+
+export default function UserProfile() {
+  return (
+      &lt;div className="UserProfile"&gt;
+        &lt;UserAvatar /&gt;
+        &lt;UserAvatar /&gt;
+      &lt;/div&gt;
+  );
+}</code></pre>
+            </li>
+            
+
+            <li><b>Embed an external component</b>
+                <pre class="language-jsx"><code>import React from 'react';
+import ComponentName from 'component-name';
+
+export default function UserProfile() {
+  return (
+      &lt;div className="UserProfile"&gt;
+        &lt;ComponentName /&gt;
+      &lt;/div&gt;
+  );
+}</code></pre>
+            </li>
+
+            <li><b>Passing properties to a component</b>
+                <pre class="language-jsx"><code>&lt;Student firstName="Julie" lastName="Johnson" age={23} pro={true} /&gt;</code></pre>
+            </li>
+
+            <li><b>Accessing the properties from a component:</b>
+                <pre class="language-jsx"><code>import React from "react";
+
+export default function Student(props) {
+  return (
+    &lt;h1&gt;
+      {props.firstName} {props.lastName} is {props.age}.
+    &lt;/h1&gt;
+  )
+}</code></pre>
+            </li>
+
+
+            <li><b>Event Listener</b> 
+                <pre class="language-jsx"><code>import React from "react";
+
+export default function Hello() {
+  function handleClick(event) {
+    event.preventDefault();
+    alert("Hello World");
+  }
+
+  return (
+    &lt;a&gt; href="/" onClick={handleClick}&gt;
+      Say Hi
+    &lt;/a&gt;
+  );
+}</code></pre>
+            </li>
+
+            
+            <li><b>React State</b>
+                <pre class="language-jsx"><code>import React, { useState } from "react";
+
+export default function Hello(props) {
+  let [name, setName] = useState("Julie");
+  function updateName() {
+    let newName = prompt("What is your name?");
+    setName(newName);
+  }
+
+  return (
+    &lt;h1&gt;
+      {name}
+    &lt;/h1&gt;
+    &lt;button onClick={updateName}&gt;
+      Update name
+    &lt;/button&gt;
+  );
+}</code></pre>
+            </li>
+
+
+            <li><b>React forms</b>
+                <pre class="language-jsx"><code>import React, { useState } from "react";
+
+export default function LoginForm() {
+  let [username, setUsername] = useState("");
+  let [password, setPassword] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    alert(`Loging in with ${username} and ${password}`);
+  }
+
+  function updateUsername(event) {
+    setUsername(event.target.value);
+  }
+
+  function updatePassword(event) {
+    setPassword(event.target.value);
+  }
+
+  return (
+    &lt;form onSubmit={handleSubmit}&gt;
+      &lt;input type="text" placeholder="Username" onChange={updateUsername} /&gt;
+      &lt;input type="password" placeholder="Password" onChange={updatePassword} /&gt;
+      &lt;input type="submit" value="Login" /&gt;
+    &lt;/form&gt;
+  );
+}</code></pre>
+            </li>
+
+
+            <li><b>AJAX Request with Axios</b>
+                <pre class="language-jsx"><code>import React from "react";
+import axios from "axios";
+
+export default function Weather(props) {
+  function handleResponse(response) {
+    console.log(response);
+  }
+  
+  if (notifications) {
+    return (
+      &lt;p&gt;
+        notifications
+      &lt;/p&gt;
+    );
+  } else {
+    let url = `https://notifications.com`;
+    axios.get(url).then(handleResponse);
+    return &lt;p&gt;Loading notifications..&lt;/p&gt;;
+  }
+}</code></pre>
+            </li>
+        </ol>
+    </div>
+</body>
+
+</html>
